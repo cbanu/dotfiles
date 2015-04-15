@@ -1,0 +1,4 @@
+# source local configuration
+if [ -f '~/.zshrc_local' ]; then
+	. ~/.zshrc_local
+fi
