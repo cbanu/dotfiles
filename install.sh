@@ -1,5 +1,6 @@
 #!/bin/sh
 
+DOTFILES=`basename ${PWD}`
 # @todo: check if it is run using sudo and suggest to run as regular user
 
 echo "Installing packages..."
@@ -27,14 +28,14 @@ fi
 # create symlinks
 if [ ! -e "${HOME}/.zshrc_local" ]; then
 	echo "Creating '~/.zshrc_local' symlink."
-	ln -s dotfiles/zsh/.zshrc_local ~/.zshrc_local
+	ln -s ${DOTFILES}/zsh/.zshrc_local ~/.zshrc_local
 fi
 
 # source local configurations
 if [ -e "${HOME}/.zshrc" ]; then
         if ! grep -F ". ~/.zshrc_local" ~/.zshrc 2>/dev/null ; then
                 echo "Sourcing local configuration into '.zshrc'."
-                cat ~/dotfiles/zsh/.zshrc_source >> ~/.zshrc
+                cat ~/${DOTFILES}/zsh/.zshrc_source >> ~/.zshrc
         fi
 fi
 
@@ -47,4 +48,5 @@ if [ ! -e "zsh/prompt/pure" ]; then
 	git config core.sparseCheckout true
 	echo "pure.zsh" > .git/info/sparse-checkout
 fi
+# @todo: how to handle authentication without passphrase prompt?
 git pull origin master
