@@ -13,13 +13,7 @@ if command -v apt-get 2>/dev/null ; then
 	sudo apt-get install tmux
 	sudo apt-get install zsh
 elif command -v pacman 2>/dev/null ; then
-	sudo pacman -S git
-	sudo pacman -S mc
-	sudo pacman -S openssh
-	sudo pacman -S vim
-	sudo pacman -S screen
-	sudo pacman -S tmux
-	sudo pacman -S zsh
+	sudo pacman -S --noconfirm git mc openssh vim screen tmux zsh
 else
 	echo "No suitable package manager found."
 	exit 1
