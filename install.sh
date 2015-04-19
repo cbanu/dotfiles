@@ -4,13 +4,26 @@
 
 echo "Installing packages..."
 
-sudo apt-get install git
-sudo apt-get install mc
-sudo apt-get install openssh-server
-sudo apt-get install vim
-sudo apt-get install screen
-sudo apt-get install tmux
-sudo apt-get install zsh
+if command -v apt-get 2>/dev/null ; then
+	sudo apt-get install git
+	sudo apt-get install mc
+	sudo apt-get install openssh-server
+	sudo apt-get install vim
+	sudo apt-get install screen
+	sudo apt-get install tmux
+	sudo apt-get install zsh
+elif command -v pacman 2>/dev/null ; then
+	sudo pacman -S git
+	sudo pacman -S mc
+	sudo pacman -S openssh
+	sudo pacman -S vim
+	sudo pacman -S screen
+	sudo pacman -S tmux
+	sudo pacman -S zsh
+else
+	echo "No suitable package manager found."
+	exit 1
+fi
 
 # create a default empty zshrc file, to avoid first usage prompts
 if [ ! -f ~/.zshrc ]; then
