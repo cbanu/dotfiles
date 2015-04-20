@@ -47,6 +47,7 @@ if [ -e "${HOME}/.zshrc" ]; then
 fi
 
 # setup ZSH prompt
+# @todo: how to handle authentication without passphrase prompt?
 if [ ! -e "zsh/prompt/pure" ]; then
 	mkdir -p zsh/prompt/pure
 	cd zsh/prompt/pure
@@ -54,6 +55,9 @@ if [ ! -e "zsh/prompt/pure" ]; then
 	git remote add origin https://github.com/sindresorhus/pure.git
 	git config core.sparseCheckout true
 	echo "pure.zsh" > .git/info/sparse-checkout
+	git pull origin master
+	patch pure.zsh ../../pure.zsh.patch
+else
+	cd zsh/prompt/pure
+	git pull origin master
 fi
-# @todo: how to handle authentication without passphrase prompt?
-git pull origin master

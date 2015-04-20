@@ -1,0 +1,4 @@
+129c129
+< 	PROMPT="%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f "
+---
+> 	PROMPT="%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:->}%f "
