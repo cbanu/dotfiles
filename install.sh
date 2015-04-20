@@ -45,6 +45,12 @@ if [ -e "${HOME}/.zshrc" ]; then
                 cat ~/${DOTFILES}/zsh/.zshrc_source >> ~/.zshrc
         fi
 fi
+if [ -e "${HOME}/.vimrc" ]; then
+        if ! grep -F ". ~/.vimrc_local" ~/.vimrc 2>/dev/null ; then
+                echo "Sourcing local configuration into '.vimrc'."
+                cat ~/${DOTFILES}/vim/.vimrc_source >> ~/.vimrc
+        fi
+fi
 
 # setup ZSH prompt
 # @todo: how to handle authentication without passphrase prompt?

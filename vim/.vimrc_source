@@ -1,0 +1,2 @@
+# source local configuration
+:source ~/.vimrc_local
