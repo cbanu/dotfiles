@@ -1,5 +1,6 @@
 export DOTFILES=${HOME}/.dotfiles
 export ZSH=${DOTFILES}/zsh
+export EDITOR=vim
 
 # source all .zsh files
 for zshFile (${ZSH}/**/*.zsh) source ${zshFile}

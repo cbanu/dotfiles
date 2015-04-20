@@ -5,13 +5,20 @@ DOTFILES=`basename ${PWD}`
 
 echo "Installing packages..."
 
-sudo apt-get install git
-sudo apt-get install mc
-sudo apt-get install openssh-server
-sudo apt-get install vim
-sudo apt-get install screen
-sudo apt-get install tmux
-sudo apt-get install zsh
+if command -v apt-get 2>/dev/null ; then
+	sudo apt-get install git
+	sudo apt-get install mc
+	sudo apt-get install openssh-server
+	sudo apt-get install vim
+	sudo apt-get install screen
+	sudo apt-get install tmux
+	sudo apt-get install zsh
+elif command -v pacman 2>/dev/null ; then
+	sudo pacman -S --noconfirm git mc openssh vim screen tmux zsh
+else
+	echo "No suitable package manager found."
+	exit 1
+fi
 
 # create a default empty zshrc file, to avoid first usage prompts
 if [ ! -e "${HOME}/.zshrc" ]; then
