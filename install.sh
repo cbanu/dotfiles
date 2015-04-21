@@ -1,6 +1,7 @@
 #!/bin/sh
 
 DOTFILES=`basename ${PWD}`
+DOTFILES_DIR=${PWD}
 # @todo: check if it is run using sudo and suggest to run as regular user
 
 echo "Installing packages..."
@@ -59,6 +60,7 @@ fi
 
 # setup ZSH prompt
 # @todo: how to handle authentication without passphrase prompt?
+cd ${DOTFILES_DIR}
 if [ ! -e "zsh/prompt/pure" ]; then
 	mkdir -p zsh/prompt/pure
 	cd zsh/prompt/pure
@@ -70,5 +72,18 @@ if [ ! -e "zsh/prompt/pure" ]; then
 	patch pure.zsh ../../pure.zsh.patch
 else
 	cd zsh/prompt/pure
+	git pull origin master
+fi
+
+# setup vundle package manager for VIM
+cd ${DOTFILES_DIR}
+if [ ! -e "vim/vundle" ]; then
+	mkdir -p vim/vundle
+	cd vim/vundle
+	git init
+	git remote add origin https://github.com/gmarik/Vundle.vim.git
+	git pull origin master
+else
+	cd vim/vundle
 	git pull origin master
 fi

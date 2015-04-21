@@ -1,3 +1,7 @@
+" initialize plugin manager
+" todo: doesn't work for now
+"source .vimrc_vundle
+
 " no arrows for me
 noremap <Up> <NOP>
 noremap <Down> <NOP>
