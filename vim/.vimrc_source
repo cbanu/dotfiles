@@ -1,4 +1,4 @@
 " source local configuration
-if filereadable(glob(~/.vimrc_local))
+if filereadable(glob("~/.vimrc_local"))
 	source ~/.vimrc_local
 endif
