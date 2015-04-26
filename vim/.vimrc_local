@@ -10,7 +10,9 @@ noremap <Right> <NOP>
 
 " display line numbers on the left (hybrid mode)
 set number
-set relativenumber
+if v:version > 702
+    set relativenumber
+endif
 
 " allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
@@ -24,10 +26,17 @@ set hlsearch
 " turn on syntax highlighting
 syntax on
 
+" set tab size to 4
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set smarttab
+
 " show tabs and line endings
 set list
 if has("multi_byte")
-	set listchars=tab:▸\ ,eol:¬
+    set listchars=tab:▸\ ,eol:¬
 else
-	set listchars=tab:>-,eol:<
+    set listchars=tab:>-,eol:<
 endif
