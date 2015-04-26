@@ -72,7 +72,9 @@ if [ ! -e "zsh/prompt/pure" ]; then
 	patch pure.zsh ../../pure.zsh.patch
 else
 	cd zsh/prompt/pure
+	git checkout pure.zsh
 	git pull origin master
+	patch pure.zsh ../../pure.zsh.patch
 fi
 
 # setup vundle package manager for VIM
