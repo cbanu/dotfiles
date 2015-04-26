@@ -4,3 +4,8 @@ export EDITOR=vim
 
 # source all .zsh files
 for zshFile (${ZSH}/**/*.zsh) source ${zshFile}
+
+alias ls='ls --color'
+alias ll='ls -lFa'
+
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
