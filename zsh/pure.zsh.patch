@@ -1,4 +1,13 @@
-129c129
+41c41,46
+< 	command test -n "$(git status --porcelain --ignore-submodules ${umode})"
+---
+> 	git_version="$(git --version | sed 's/[[:alpha:]|[:space:]]//g' | sed 's/^\([0-9]*\)\..*$/\1/g')"
+> 	if [[ ${git_version} -ge 2 ]] ; then
+> 		command test -n "$(git status --porcelain --ignore-submodules ${umode})"
+> 	else
+> 		command test -n "$(git status --porcelain ${umode})"
+> 	fi
+129c134
 < 	PROMPT="%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f "
 ---
 > 	PROMPT="%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:->}%f "
