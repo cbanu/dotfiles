@@ -19,8 +19,8 @@ set backspace=indent,eol,start
 " try to keep previous line indenting if no file-specific indent rules
 set autoindent
 
-" highlight search results
-set hlsearch
+" use F3 to toggle search results highlighting
+nnoremap <F3> :set hlsearch!<CR>
 
 " turn on syntax highlighting
 syntax on
