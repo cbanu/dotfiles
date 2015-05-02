@@ -1,0 +1,2 @@
+[include]
+	path = ~/.gitcfg_local

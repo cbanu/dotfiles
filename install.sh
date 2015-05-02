@@ -76,10 +76,12 @@ createPlaceholder ${HOME}/.vimrc
 createSymlink ${HOME}/.zshrc_local ${DOTFILES}/zsh/.zshrc_local
 createSymlink ${HOME}/.vimrc_local ${DOTFILES}/vim/.vimrc_local
 createSymlink ${HOME}/.vimrc_vundle ${DOTFILES}/vim/.vimrc_vundle
+createSymlink ${HOME}/.gitcfg_local ${DOTFILES}/git/.gitcfg_local
 
 # source local configurations
 sourceLocalConfig ${HOME}/.zshrc ".zshrc_local" ~/${DOTFILES}/zsh/.zshrc_source
 sourceLocalConfig ${HOME}/.vimrc ".vimrc_local" ~/${DOTFILES}/vim/.vimrc_source
+sourceLocalConfig ${HOME}/.gitconfig ".gitcfg_local" ~/${DOTFILES}/git/.gitcfg_source
 
 # setup ZSH prompt
 # @todo: how to handle authentication without passphrase prompt?
