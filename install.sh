@@ -119,3 +119,12 @@ else
     cd ${VUNDLEDIR}
     git pull
 fi
+
+# setup powerline fonts
+PWRFONTSDIR=${HOME}/powerline-fonts
+git clone git@github.com:powerline/fonts ${PWRFONTSDIR}
+pushd ${PWRFONTSDIR}
+./install.sh
+popd
+rm -rf ${PWRFONTSDIR}
+

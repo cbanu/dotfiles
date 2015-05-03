@@ -43,10 +43,17 @@ endif
 " setup color theme
 syntax enable
 set background=dark
-colorscheme Tomorrow-Night
+set t_Co=256
+colorscheme solarized
 
 " set tags search
 nnoremap <leader>. :CtrlPTag<CR>
 
 " set tags bar toggle
 nnoremap <leader>b :TagbarToggle<CR>
+
+" setup airline bling
+let g:airline#extensions#tabline#enabled = 1
+set laststatus=2
+let g:airline_theme='solarized'
+let g:airline_powerline_fonts = 1
