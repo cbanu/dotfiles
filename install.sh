@@ -51,9 +51,9 @@ sourceLocalConfig() {
 
 echo "Installing packages..."
 if command -v apt-get 2>/dev/null ; then
-    sudo apt-get install git-core mc openssh-server vim screen tmux zsh
+    sudo apt-get install git-core mc openssh-server vim screen tmux zsh ctags
 elif command -v pacman 2>/dev/null ; then
-    sudo pacman -S --noconfirm git mc openssh vim screen tmux zsh
+    sudo pacman -S --noconfirm git mc openssh vim screen tmux zsh ctags
 else
     echo "No suitable package manager found."
     exit 1
