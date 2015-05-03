@@ -93,12 +93,14 @@ if [ ! -e "zsh/prompt/pure" ]; then
     git remote add origin https://github.com/sindresorhus/pure.git
     git config core.sparseCheckout true
     echo "pure.zsh" > .git/info/sparse-checkout
-    git pull origin master
+    git fetch origin
+    git branch --set-upstream master origin/master
+    git checkout master
     patch pure.zsh ../../pure.zsh.patch
 else
     cd zsh/prompt/pure
     git checkout pure.zsh
-    git pull origin master
+    git pull
     patch pure.zsh ../../pure.zsh.patch
 fi
 
@@ -110,8 +112,10 @@ if [ ! -e "${VUNDLEDIR}" ]; then
     cd ${VUNDLEDIR}
     git init
     git remote add origin https://github.com/gmarik/Vundle.vim.git
-    git pull origin master
+    git fetch origin
+    git branch --set-upstream master origin/master
+    git checkout master
 else
     cd ${VUNDLEDIR}
-    git pull origin master
+    git pull
 fi
