@@ -119,12 +119,13 @@ else
     cd ${VUNDLEDIR}
     git pull
 fi
+# automatically install vim packages (temporarily bypass local settings)
+vim -u ${HOME}/.vimrc_vundle +PluginInstall +qall
 
 # setup powerline fonts
 PWRFONTSDIR=${HOME}/powerline-fonts
 git clone git@github.com:powerline/fonts ${PWRFONTSDIR}
-pushd ${PWRFONTSDIR}
+pushd ${PWRFONTSDIR} >/dev/null
 ./install.sh
-popd
+popd >/dev/null
 rm -rf ${PWRFONTSDIR}
-
