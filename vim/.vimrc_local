@@ -1,6 +1,12 @@
 " initialize plugin manager
 :source ~/.vimrc_vundle
 
+" disable startup message
+set shortmess+=I
+
+" change leader key
+let mapleader=' '
+
 " no arrows for me
 noremap <Up> <NOP>
 noremap <Down> <NOP>
@@ -16,14 +22,20 @@ endif
 " allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
 
-" try to keep previous line indenting if no file-specific indent rules
-set autoindent
-
 " map key to toggle search results highlighting
 nnoremap <leader>h :set hlsearch!<CR>
 
+" show search results as you type
+set incsearch
+
 " turn on syntax highlighting
-syntax on
+syntax enable
+
+" don't wrap lines
+set nowrap
+
+" try to keep previous line indenting if no file-specific indent rules
+set autoindent
 
 " set tab size to 4
 set tabstop=4
@@ -41,10 +53,9 @@ else
 endif
 
 " setup color theme
-syntax enable
 set background=dark
 set t_Co=256
-colorscheme solarized
+colorscheme molokai
 
 " set tags search
 nnoremap <leader>. :CtrlPTag<CR>
@@ -53,7 +64,7 @@ nnoremap <leader>. :CtrlPTag<CR>
 nnoremap <leader>b :TagbarToggle<CR>
 
 " setup airline bling
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled=1
 set laststatus=2
-let g:airline_theme='solarized'
-let g:airline_powerline_fonts = 1
+let g:airline_theme='molokai'
+let g:airline_powerline_fonts=1
