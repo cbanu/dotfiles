@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 DOTFILES=`basename ${PWD}`
 DOTFILES_DIR=${PWD}
