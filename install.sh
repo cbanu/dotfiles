@@ -72,19 +72,24 @@ createPlaceholder ${HOME}/.zshrc
 # create a default empty vimrc file
 createPlaceholder ${HOME}/.vimrc
 
+# create a default empty tmux config file
+createPlaceholder ${HOME}/.tmux.conf
+
 # create symlinks
 createSymlink ${HOME}/.zshrc_local ${DOTFILES}/zsh/.zshrc_local
 createSymlink ${HOME}/.vimrc_local ${DOTFILES}/vim/.vimrc_local
 createSymlink ${HOME}/.vimrc_vundle ${DOTFILES}/vim/.vimrc_vundle
 createSymlink ${HOME}/.gitcfg_local ${DOTFILES}/git/.gitcfg_local
+createSymlink ${HOME}/.tmuxcfg_local ${DOTFILES}/tmux/.tmuxcfg_local
 
 # source local configurations
 sourceLocalConfig ${HOME}/.zshrc ".zshrc_local" ~/${DOTFILES}/zsh/.zshrc_source
 sourceLocalConfig ${HOME}/.vimrc ".vimrc_local" ~/${DOTFILES}/vim/.vimrc_source
 sourceLocalConfig ${HOME}/.gitconfig ".gitcfg_local" ~/${DOTFILES}/git/.gitcfg_source
+sourceLocalConfig ${HOME}/.tmux.conf ".tmuxcfg_local" ~/${DOTFILES}/tmux/.tmuxcfg_source
 
 # setup ZSH prompt
-# @todo: how to handle authentication without passphrase prompt?
+# TODO: how to handle authentication without passphrase prompt?
 cd ${DOTFILES_DIR}
 if [ ! -e "zsh/prompt/pure" ]; then
     mkdir -p zsh/prompt/pure
@@ -132,9 +137,8 @@ fi
 if [ -z ${pwrFontsInstalled} ]; then
     PWRFONTS_TMPDIR=/tmp/powerline-fonts
     git clone https://github.com/powerline/fonts.git ${PWRFONTS_TMPDIR}
-    pushd ${PWRFONTS_TMPDIR}
+    pushd ${PWRFONTS_TMPDIR} >/dev/null
     ./install.sh
-    popd
+    popd >/dev/null
     rm -rf ${PWRFONTS_TMPDIR}
 fi
-
