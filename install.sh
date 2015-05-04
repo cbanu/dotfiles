@@ -123,9 +123,18 @@ fi
 vim -u ${HOME}/.vimrc_vundle +PluginInstall +qall
 
 # setup powerline fonts
-PWRFONTSDIR=${HOME}/powerline-fonts
-git clone git@github.com:powerline/fonts ${PWRFONTSDIR}
-pushd ${PWRFONTSDIR} >/dev/null
-./install.sh
-popd >/dev/null
-rm -rf ${PWRFONTSDIR}
+if [ -e "${HOME}/.fonts" ]; then
+    pwrFontsCount=`ls -1 ${HOME}/.fonts/*Powerline* | wc -l`
+    if [ ${pwrFontsCount} -gt 0 ] ; then
+        pwrFontsInstalled=Y
+    fi
+fi
+if [ -z ${pwrFontsInstalled} ]; then
+    PWRFONTS_TMPDIR=/tmp/powerline-fonts
+    git clone https://github.com/powerline/fonts.git ${PWRFONTS_TMPDIR}
+    pushd ${PWRFONTS_TMPDIR}
+    ./install.sh
+    popd
+    rm -rf ${PWRFONTS_TMPDIR}
+fi
+
