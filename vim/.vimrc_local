@@ -4,7 +4,7 @@
 " disable startup message
 set shortmess+=I
 
-" change leader key
+" set leader key to space bar
 let mapleader=' '
 
 " no arrows for me
@@ -13,10 +13,14 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
+" show menu when autocompleting
+set wildmenu
+
 " display line numbers on the left (hybrid mode)
-set number
 if v:version > 702
     set relativenumber
+else
+    set number
 endif
 
 " allow backspacing over autoindent, line breaks and start of insert action
@@ -53,9 +57,11 @@ else
 endif
 
 " setup color theme
-set background=dark
-set t_Co=256
-colorscheme molokai
+if $COLORTERM == 'gnome-terminal'
+    set t_Co=256
+    colorscheme molokai
+    set background=dark
+endif
 
 " set tags search
 nnoremap <leader>. :CtrlPTag<CR>

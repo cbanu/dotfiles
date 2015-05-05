@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# echo all commands
+set -x
+
 DOTFILES=`basename ${PWD}`
 DOTFILES_DIR=${PWD}
 # @todo: check if it is run using sudo and suggest to run as regular user
@@ -51,9 +54,9 @@ sourceLocalConfig() {
 
 echo "Installing packages..."
 if command -v apt-get 2>/dev/null ; then
-    sudo apt-get install git-core mc openssh-server vim screen tmux zsh ctags
+    sudo apt-get install git-core mc openssh-server vim screen tmux zsh ctags ranger
 elif command -v pacman 2>/dev/null ; then
-    sudo pacman -S --noconfirm git mc openssh vim screen tmux zsh ctags
+    sudo pacman -S --noconfirm git mc openssh vim screen tmux zsh ctags ranger
 else
     echo "No suitable package manager found."
     exit 1
