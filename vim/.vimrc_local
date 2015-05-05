@@ -57,7 +57,7 @@ else
 endif
 
 " setup color theme
-if $COLORTERM == 'gnome-terminal'
+if $COLORTERM == 'gnome-terminal' || $COLORTERM == 'xfce4-terminal'
     set t_Co=256
     colorscheme molokai
     set background=dark
