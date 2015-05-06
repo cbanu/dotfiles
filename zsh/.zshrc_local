@@ -2,6 +2,14 @@ export DOTFILES=${HOME}/.dotfiles
 export ZSH=${DOTFILES}/zsh
 export EDITOR=vim
 
+export HISTFILE=~/.histfile
+export HISTSIZE=10000
+export SAVEHIST=10000
+
+# set line editing key bindings to vi
+bindkey -v
+export KEYTIMEOUT=1
+
 # source all .zsh files
 for zshFile (${ZSH}/**/*.zsh) source ${zshFile}
 
