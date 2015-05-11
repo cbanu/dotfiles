@@ -9,9 +9,9 @@ export SAVEHIST=10000
 # set line editing key bindings to vi
 bindkey -v
 export KEYTIMEOUT=1
-
-# source all .zsh files
-for zshFile (${ZSH}/**/*.zsh) source ${zshFile}
+# fix some keybindings
+bindkey '\e[3~' delete-char
+bindkey '^R' history-incremental-search-backward
 
 alias ls='ls --color'
 alias ll='ls -lFa'
@@ -19,3 +19,8 @@ alias ll='ls -lFa'
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 alias tmux='TERM=xterm-256color tmux'
+
+PATH=~/Apps/bin:${PATH}
+
+# source all .zsh files
+for zshFile (${ZSH}/**/*.zsh) source ${zshFile}
