@@ -1,4 +1,3 @@
-#!/bin/bash
 
 # echo all commands
 set -x
@@ -71,6 +70,9 @@ fi
 
 # create a default empty zshrc file, to avoid first usage prompts
 createPlaceholder ${HOME}/.zshrc
+
+# create a default empty git config file
+createPlaceholder ${HOME}/.gitconfig
 
 # create a default empty vimrc file
 createPlaceholder ${HOME}/.vimrc
