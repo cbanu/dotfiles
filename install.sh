@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # echo all commands
 set -x
