@@ -3,11 +3,15 @@
 ---
 > 	git_version="$(git --version | sed 's/[[:alpha:]|[:space:]]//g' | sed 's/^\([0-9]*\)\..*$/\1/g')"
 > 	if [[ ${git_version} -ge 2 ]] ; then
-> 		command test -n "$(git status --porcelain --ignore-submodules ${umode})"
+> 		command test -n "$(GIT_TERMINAL_PROMPT=0 git status --porcelain --ignore-submodules ${umode})"
 > 	else
 > 		command test -n "$(git status --porcelain ${umode})"
 > 	fi
-129c134
+106,108d110
+< 	# disable auth prompting on git 2.3+
+< 	export GIT_TERMINAL_PROMPT=0
+< 
+130c132
 < 	PROMPT="%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f "
 ---
 > 	PROMPT="%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:->}%f "
