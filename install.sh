@@ -103,7 +103,7 @@ if [ ! -e "zsh/prompt/pure" ]; then
     echo "pure.zsh" > .git/info/sparse-checkout
     git fetch origin
     git branch --set-upstream master origin/master
-    git checkout master
+    git checkout 467a1a6
     patch pure.zsh ../../pure.zsh.patch
 else
     cd zsh/prompt/pure
