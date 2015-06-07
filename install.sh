@@ -99,7 +99,7 @@ sourceLocalConfig ${HOME}/.tmux.conf ".tmuxcfg_local" ~/${DOTFILES}/tmux/.tmuxcf
 cd ${DOTFILES_DIR}
 if [ ! -e "zsh/prompt/pure" ]; then
     mkdir -p zsh/prompt/pure
-    cd zsh/prompt/pure
+    pushd zsh/prompt/pure
     git init
     git remote add origin https://github.com/sindresorhus/pure.git
     git config core.sparseCheckout true
@@ -108,11 +108,13 @@ if [ ! -e "zsh/prompt/pure" ]; then
     git branch --set-upstream master origin/master
     git checkout 467a1a6
     patch pure.zsh ../../pure.zsh.patch
+    popd
 else
-    cd zsh/prompt/pure
+    pushd zsh/prompt/pure
     git checkout pure.zsh
-    git pull
+    git pull origin master
     patch pure.zsh ../../pure.zsh.patch
+    popd
 fi
 
 # setup vundle package manager for VIM
