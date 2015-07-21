@@ -7,11 +7,7 @@
 > 	else
 > 		command test -n "$(git status --porcelain ${umode})"
 > 	fi
-106,108d110
-< 	# disable auth prompting on git 2.3+
-< 	export GIT_TERMINAL_PROMPT=0
-< 
-130c132
+128c130
 < 	PROMPT="%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f "
 ---
 > 	PROMPT="%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:->}%f "
