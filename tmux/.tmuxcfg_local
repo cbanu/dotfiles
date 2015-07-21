@@ -1,6 +1,16 @@
 unbind C-b
-set -g prefix C-a
-bind C-a send-prefix
+set -g prefix C-q
+bind C-q send-prefix
+
+# vim-like bindings to switch panels
+bind k selectp -U # switch to panel Up
+bind j selectp -D # switch to panel Down 
+bind h selectp -L # switch to panel Left
+bind l selectp -R # switch to panel Right
+
+# start windows and panes at 1, not 0
+set -g base-index 1
+set -g pane-base-index 1
 
 set -g default-terminal "screen-256color"
 
