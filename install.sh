@@ -112,7 +112,7 @@ if [ ! -e "zsh/prompt/pure" ]; then
 else
     pushd zsh/prompt/pure
     git checkout pure.zsh
-    git pull origin master
+    git pull origin 467a1a6
     patch pure.zsh ../../pure.zsh.patch
     popd
 fi
