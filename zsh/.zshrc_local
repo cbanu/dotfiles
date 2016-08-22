@@ -1,4 +1,4 @@
-export DOTFILES=${HOME}/.dotfiles
+export DOTFILES=/home/cosmin/dotfiles
 export ZSH=${DOTFILES}/zsh
 export EDITOR=vim
 

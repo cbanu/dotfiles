@@ -3,8 +3,7 @@
 # echo all commands
 set -x
 
-DOTFILES=`basename ${PWD}`
-DOTFILES_DIR=${PWD}
+DOTFILES=${PWD}
 # @todo: check if it is run using sudo and suggest to run as regular user
 
 # creates empty placeholder file (only if the file doesn't exist)
@@ -54,7 +53,7 @@ sourceLocalConfig() {
 
 echo "Installing packages..."
 if command -v apt-get 2>/dev/null ; then
-    sudo apt-get install git-core mc openssh-server vim screen tmux zsh ctags ranger htop
+    sudo apt-get -y install git-core mc openssh-server vim screen tmux zsh ctags ranger htop
 elif command -v pacman 2>/dev/null ; then
     sudo pacman -S --noconfirm git mc openssh vim screen tmux zsh ctags ranger htop
 else
@@ -89,14 +88,17 @@ createSymlink ${HOME}/.gitcfg_local ${DOTFILES}/git/.gitcfg_local
 createSymlink ${HOME}/.tmuxcfg_local ${DOTFILES}/tmux/.tmuxcfg_local
 
 # source local configurations
-sourceLocalConfig ${HOME}/.zshrc ".zshrc_local" ~/${DOTFILES}/zsh/.zshrc_source
-sourceLocalConfig ${HOME}/.vimrc ".vimrc_local" ~/${DOTFILES}/vim/.vimrc_source
-sourceLocalConfig ${HOME}/.gitconfig ".gitcfg_local" ~/${DOTFILES}/git/.gitcfg_source
-sourceLocalConfig ${HOME}/.tmux.conf ".tmuxcfg_local" ~/${DOTFILES}/tmux/.tmuxcfg_source
+sourceLocalConfig ${HOME}/.zshrc ".zshrc_local" ${DOTFILES}/zsh/.zshrc_source
+sourceLocalConfig ${HOME}/.vimrc ".vimrc_local" ${DOTFILES}/vim/.vimrc_source
+sourceLocalConfig ${HOME}/.gitconfig ".gitcfg_local" ${DOTFILES}/git/.gitcfg_source
+sourceLocalConfig ${HOME}/.tmux.conf ".tmuxcfg_local" ${DOTFILES}/tmux/.tmuxcfg_source
+
+# setup dotfiles folder in zshrc_local
+sed -i "/^export DOTFILES=.*$/c\\export DOTFILES=${DOTFILES}" ${DOTFILES}/zsh/.zshrc_local
 
 # setup ZSH prompt
 # TODO: how to handle authentication without passphrase prompt?
-cd ${DOTFILES_DIR}
+cd ${DOTFILES}
 if [ ! -e "zsh/prompt/pure" ]; then
     mkdir -p zsh/prompt/pure
     pushd zsh/prompt/pure
@@ -105,14 +107,14 @@ if [ ! -e "zsh/prompt/pure" ]; then
     git config core.sparseCheckout true
     echo "pure.zsh" > .git/info/sparse-checkout
     git fetch origin
-    git branch --set-upstream master origin/master
-    git checkout 467a1a6
+    git branch --set-upstream-to master origin/master
+    git checkout 467a1a6ce25e61e744106b52704a5ae8c46243af
     patch pure.zsh ../../pure.zsh.patch
     popd
 else
     pushd zsh/prompt/pure
     git checkout pure.zsh
-    git pull origin 467a1a6
+    git pull origin 467a1a6ce25e61e744106b52704a5ae8c46243af
     patch pure.zsh ../../pure.zsh.patch
     popd
 fi
