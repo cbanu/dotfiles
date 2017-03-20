@@ -53,7 +53,7 @@ sourceLocalConfig() {
 
 echo "Installing packages..."
 if command -v apt-get 2>/dev/null ; then
-    sudo apt-get -y install git-core mc openssh-server vim screen tmux zsh ctags ranger htop
+    sudo apt-get -y install git-core mc openssh-server vim screen tmux zsh ctags cscope ranger htop
 elif command -v pacman 2>/dev/null ; then
     sudo pacman -S --noconfirm git mc openssh vim screen tmux zsh ctags ranger htop
 else
