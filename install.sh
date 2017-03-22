@@ -2,9 +2,15 @@
 
 # echo all commands
 set -x
+set -e
 
 DOTFILES=${PWD}
+
 # @todo: check if it is run using sudo and suggest to run as regular user
+SUDO=
+if [[ $EUID -ne 0 ]] ; then
+	SUDO=sudo
+fi
 
 # creates empty placeholder file (only if the file doesn't exist)
 createPlaceholder() {
@@ -53,9 +59,11 @@ sourceLocalConfig() {
 
 echo "Installing packages..."
 if command -v apt-get 2>/dev/null ; then
-    sudo apt-get -y install git-core mc openssh-server vim screen tmux zsh ctags cscope ranger htop
+    ${SUDO} apt-get -y install git-core mc openssh-server vim screen tmux zsh ctags cscope ranger htop patch
 elif command -v pacman 2>/dev/null ; then
-    sudo pacman -S --noconfirm git mc openssh vim screen tmux zsh ctags ranger htop
+    ${SUDO} pacman -S --noconfirm git mc openssh vim screen tmux zsh ctags cscope ranger htop patch
+elif command -v yum 2>/dev/null ; then
+    ${SUDO} yum -y install git mc openssh vim screen tmux zsh ctags cscope ranger htop patch
 else
     echo "No suitable package manager found."
     exit 1
