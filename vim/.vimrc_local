@@ -49,6 +49,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set smarttab
+set expandtab
 
 " show tabs and line endings
 set list

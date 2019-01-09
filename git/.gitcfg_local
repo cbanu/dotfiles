@@ -1,6 +1,8 @@
 [alias]
-	xlog = log --graph --decorate --oneline --color
+	lg = log --graph --decorate --oneline --all
+	st = status
 
 [color]
 	status = auto
 	diff = auto
+	log = auto
