@@ -62,6 +62,8 @@ if command -v apt-get 2>/dev/null ; then
     ${SUDO} apt-get -y install git-core mc openssh-server vim screen tmux zsh ctags cscope ranger htop patch
 elif command -v pacman 2>/dev/null ; then
     ${SUDO} pacman -S --noconfirm git mc openssh vim screen tmux zsh ctags cscope ranger htop patch
+elif command -v dnf 2>/dev/null ; then
+    ${SUDO} dnf -y install git mc openssh vim screen tmux zsh ctags cscope ranger htop patch util-linux-user
 elif command -v yum 2>/dev/null ; then
     ${SUDO} yum -y install git mc openssh vim screen tmux zsh ctags cscope ranger htop patch
 else
@@ -115,7 +117,6 @@ if [ ! -e "zsh/prompt/pure" ]; then
     git config core.sparseCheckout true
     echo "pure.zsh" > .git/info/sparse-checkout
     git fetch origin
-    git branch --set-upstream-to master origin/master
     git checkout 467a1a6ce25e61e744106b52704a5ae8c46243af
     patch pure.zsh ../../pure.zsh.patch
     popd
@@ -136,7 +137,6 @@ if [ ! -e "${VUNDLEDIR}" ]; then
     git init
     git remote add origin https://github.com/gmarik/Vundle.vim.git
     git fetch origin
-    git branch --set-upstream master origin/master
     git checkout master
 else
     cd ${VUNDLEDIR}
