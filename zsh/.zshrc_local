@@ -53,6 +53,15 @@ bindkey -s "^[Ok" "+"
 bindkey -s "^[Om" "-"
 bindkey -s "^[Oj" "*"
 bindkey -s "^[Oo" "/"
+# home/end
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+# insert/delete
+bindkey "^[[2~" overwrite-mode
+bindkey "^[[3~" delete-char
+# pageup/pagedown
+bindkey "^[[5~" up-line-or-history
+bindkey "^[[6~" down-line-or-history
 
 # disable scroll lock
 stty -ixon
