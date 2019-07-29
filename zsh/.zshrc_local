@@ -1,6 +1,7 @@
 export DOTFILES=/home/cosmin/dotfiles
 export ZSH=${DOTFILES}/zsh
-export EDITOR=vim
+export EDITOR=vi
+export VISUAL=vim
 
 export HISTFILE=~/.histfile
 export HISTSIZE=10000
