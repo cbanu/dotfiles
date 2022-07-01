@@ -24,7 +24,7 @@ Plugin 'altercation/vim-colors-solarized'
 " Code editing
 Plugin 'vim-scripts/cscope.vim'
 " GDB support
-Plugin 'vim-scripts/Conque-GDB'
+"Plugin 'vim-scripts/Conque-GDB'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
