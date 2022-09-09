@@ -33,9 +33,10 @@ abbr -a gst "git status"
 abbr -a gss "git stash save"
 abbr -a gsl "git stash list"
 abbr -a gl  "git log"
-abbr -a gll "git log --oneline --graph --all"
+abbr -a gll "git log --oneline --color --decorate --graph --branches --remotes"
 abbr -a gco "git checkout"
-abbr -a gf  "git fetch"
+abbr -a gf  "git fetch --no-tags"
+abbr -a gsu "git submodule update"
 abbr -a gr  "git rebase"
 abbr -a gd  "git diff"
 abbr -a gds "git diff --staged"
@@ -43,3 +44,11 @@ abbr -a ga  "git add"
 abbr -a gc  "git commit"
 abbr -a gcm "git commit --message"
 abbr -a gp  "git push"
+
+# paths
+if test -d ~/bin
+    set -U fish_user_paths $fish_user_paths ~/bin
+end
+if test -d ~/.cargo/bin/
+    set -U fish_user_paths $fish_user_paths ~/.cargo/bin/
+end
