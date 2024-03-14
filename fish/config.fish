@@ -52,3 +52,17 @@ end
 if test -d ~/.cargo/bin/
     set -U fish_user_paths $fish_user_paths ~/.cargo/bin/
 end
+
+# SSH agent
+if test -z "$SSH_AUTH_SOCK"
+    # check for a currently running instance of the agent
+    set RUNNING_AGENT (ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]')
+    if test "$RUNNING_AGENT" = "0"
+        # launch a new instance of the agent
+        ssh-agent -s > $HOME/.ssh/ssh-agent
+    end
+    # we need fish equivalent of bash's eval:
+    #   eval $(cat $HOME/.ssh/ssh-agent) >/dev/null
+    bash -c "eval '$(cat $HOME/.ssh/ssh-agent)' >/dev/null ; printenv | grep -E '^(SSH_AUTH_SOCK|SSH_AGENT_PID)=' | sed 's/^/export /'" \
+        | source
+end
